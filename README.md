@@ -1,4 +1,4 @@
-# Steam Deck - Installing Clover Script for Dual Boot Between SteamOS and Windows (and other OSes too!)
+# ChimeraOS - Installing Clover Script for Dual Boot Between SteamOS and Windows (and other OSes too!)
 
 ## About
 
@@ -8,11 +8,15 @@ A collection of tools that is packaged into an easy to use script that is stream
 * Clover Toolbox is a shell script that offers a simple GUI to configure some aspects of Clover script.
 * Custom systemd script that performs a sanity check whenever SteamOS starts up making sure that the dual boot is intact and repairs it automatically if needed.
 
-## What's New (as of December 12 2023)
-1. Updated for Clover release 5156 <br>
-2. New Steam Deck OLED BGRT Logo
+## What's New (as of December 31 2023)
+1. Change target OS from Steam Deck to ChimeraOS
+
 <details>
 <summary><b>Old Changelog</b></summary>
+<p><b>December 12 2023</b><br>
+1. Updated for Clover release 5156 <br>
+2. New Steam Deck OLED BGRT Logo
+
 <p><b>October 28 2023</b><br>
 1. Updated the script to fix the issue of theme names not getting parsed correctly. Thanks to u/Brian_H8951 for pointing out the issue and the fix!
 
@@ -26,28 +30,28 @@ A collection of tools that is packaged into an easy to use script that is stream
 2. Added SteamOS version number, build number and kernel number on the custom systemd script (useful when troubleshooting) <br>
 3. Code cleanup on the Clover Toolbox <br>
 4. Updated config.plist </p>
- 
+
 <p><b>September 13 2023</b><br>
 1. added notification dialog box after changing themes <br>
 2. resized BMPs and new config for HackBGRT </p>
-   
+
 <p><b>September 12 2023</b><br>
 1. Perform best effort to automatically remove rEFInd if it is previously installed <br>
-2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/pull/23) <br>
+2. Clover 5155 - thanks @imfelixlaw for the [PR #23.](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/pull/23) <br>
 3. Updated config.plist to use Apocalypse theme by default (I chose this theme as this looks good on my Switch Deck!) <br>
 4. Updated config.plist to support Pop!_OS <br>
 5. Updated config.plist to reflect Nobara and Bazzite <br>
 6. New config and new logos for HackBGRT (Windows Internal SSD only) <br>
 7. Clover Toolbox - option to set static theme or random theme <br>
 8. Clover Toolbox - option for DeckHD 1200p screen mod </p>
-   
+
 <p><b>July 30 2023</b><br>
 1. Updated Clover from 5151 to 5154<br></p>
 
 <p><b>May 24 2023</b><br>
 1. cleanup the Clover Toolbox menu so it is easier to read<br>
 2. cleanup the config.plist<br></p>
-   
+
 <p><b>May 19 2023</b><br>
 1. bugfix - fixed the issue where it shows duplicate Windows icon when Windows is installed on sdcard / external SSD.<br>
 2. Clover Toolbox - a simple GUI to toggle settings.<br>
@@ -65,13 +69,13 @@ A collection of tools that is packaged into an easy to use script that is stream
 2. implement systemd service / inject systemd service on the other rootfs.<br></p>
 
 <p><b>March 11 2023</b><br>
-1. rewrote the script <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/7">(thanks arkag!)</a> so it pulls the ISO directly from the Clover repositories.<br>
+1. rewrote the script <a href="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/issues/7">(thanks arkag!)</a> so it pulls the ISO directly from the Clover repositories.<br>
 2. updated the config.plist so it supports more OS automatically - Kali, Ubuntu and Fedora.<br></p>
-   
+
 <p><b>February 20 2023</b><br>
 1. added more sanity checks and cleanup in the post-install script.<br>
 2. cleaned up the config.plist so it is more manageable and easier to read.<br>
-3. changed the mouse pointer speed to 20 to close the <a href="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/issues/3">issue reported here.</a><br></p>
+3. changed the mouse pointer speed to 20 to close the <a href="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/issues/3">issue reported here.</a><br></p>
 
 <p><b>January 26 2023</b><br>
 1. <b>added experimental version (this is what i use)</b> - no need for Windows powershell script / scheduled task.<br>
@@ -101,7 +105,7 @@ A collection of tools that is packaged into an easy to use script that is stream
 <b> If you like my work please show support by subscribing to my [YouTube channel @10MinuteSteamDeckGamer.](https://www.youtube.com/@10MinuteSteamDeckGamer/) </b> <br>
 <b> I'm just passionate about Linux, Windows, how stuff works, and playing retro and modern video games on my Steam Deck! </b>
 <p align="center">
-<a href="https://www.youtube.com/@10MinuteSteamDeckGamer/"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/10minute.png"/> </a>
+<a href="https://www.youtube.com/@10MinuteSteamDeckGamer/"> <img src="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/blob/main/10minute.png"/> </a>
 </p>
 
 <b>Monetary donations are also encouraged if you find this project helpful. Your donation inspires me to continue research on the Steam Deck! Clover script, 70Hz mod, SteamOS microSD, Secure Boot, etc.</b>
@@ -109,7 +113,7 @@ A collection of tools that is packaged into an easy to use script that is stream
 <b>Scan the QR code or click the image below to visit my donation page.</b>
 
 <p align="center">
-<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/QRCode.png"/> </a>
+<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/blob/main/QRCode.png"/> </a>
 </p>
 
 ## Disclaimer
@@ -122,34 +126,40 @@ I've created and has been using this script since December 2022 and a lot of use
 [Click the image below for a video tutorial and to see the functionalities of the script!](https://www.youtube.com/watch?v=heo2yFycnsM)
 </b>
 <p align="center">
-<a href="https://www.youtube.com/watch?v=heo2yFycnsM"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/banner.png"/> </a>
+<a href="https://www.youtube.com/watch?v=heo2yFycnsM"> <img src="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/blob/main/banner.png"/> </a>
 </p>
 
 ## Quick Install Steps - if you are in a hurry then this is what you need (but really you should read the rest of the README!)
 Perform some Windows config first! Boot to Windows and open elevated command prompt -
-1. bcdedit.exe -set {globalsettings} highestmode on 
+1. bcdedit.exe -set {globalsettings} highestmode on
 2. reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 
 Once done, boot to SteamOS to install Clover!
 1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
 2. Clone the github repo. <br>
    cd ~/ <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
-   
+   git clone https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot <br>
+
    If it errors that folder already exists, delete the old folder first - <br>
-   rm -rf ~/SteamDeck-Clover-dualboot <br>
-   
+   rm -rf ~/ChimeraOS-Clover-dualboot <br>
+
    Then perform the clone again - <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
-   
-3. Execute the script! <br>
-   cd ~/SteamDeck-Clover-dualboot <br>
-   chmod +x install-Clover.sh <br>
-   ./install-Clover.sh <br>
-   
+   git clone https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot <br>
+
+3. Install p7zip, efibootmgr <br>
+   sudo frzr-unlock <br>
+   sudo mkdir /var/lib/pacman <br>
+   sudo pacman -Syu <br>
+   sudo pacman -S p7zip --overwrite "\*" <br>
+   sudo pacman -S efibootmgr --overwrite "\*" <br>
+
+4. Execute the script! <br>
+   cd ~/ChimeraOS-Clover-dualboot <br>
+   ./install-clover.sh <br>
+
    ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png) <br>
 
-4. The script will check if sudo passwword is already set. <br>
+5. The script will check if sudo passwword is already set. <br>
    <b>a.</b>
          If it is already set, enter the current sudo password and the script will continue. <br>
          If wrong password is provided the script will exit immdediately. Re-run the script and enter the correct sudo password! <br>
@@ -162,12 +172,12 @@ Once done, boot to SteamOS to install Clover!
    <b>c.</b>
          Script will show a menu. Select which OS will be the default selected in the Clover GUI boot menu. <br>
          ![image](https://user-images.githubusercontent.com/98122529/229242673-0966ef48-9b6b-41ba-8269-2e8c1d9caca1.png)<br>
-         
+
    <b>d.</b>
          Script will continue to run and perform sanity checks all throughout the install process.<br>
          ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)<br>
 
-            
+
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
 
@@ -184,7 +194,7 @@ Once done, boot to SteamOS to install Clover!
 ![image](https://user-images.githubusercontent.com/98122529/233867354-4d554a4e-1e1f-42f7-968a-31a8c0b677b2.png)
 
 **Clover Toolbox**
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/8308d81f-99f6-4751-abf1-3ebb8436322a)
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/8308d81f-99f6-4751-abf1-3ebb8436322a)
 
 <details>
 <summary><b>More Screenshots Here</b></summary>
@@ -266,7 +276,7 @@ VERY IMPORTANT - If you plan to use Windows installed on the sdcard, make sure t
 2. Open a konsole terminal and run the uninstall script - <br>
    cd ~/1Clover-tools <br>
    ./uninstall-Clover.sh <br>
-   
+
    ![image](https://user-images.githubusercontent.com/98122529/211840095-85745118-fa64-4ef8-b2c1-78dbf0443459.png)<br>
 </details>
 
@@ -275,19 +285,19 @@ VERY IMPORTANT - If you plan to use Windows installed on the sdcard, make sure t
 1. Boot into SteamOS, then go into Desktop Mode and open a konsole terminal.<br>
 2. Clone the github repo. <br>
    cd ~/ <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
-   
+   git clone https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot <br>
+
    If it errors that folder already exists, delete the old folder first - <br>
-   rm -rf ~/SteamDeck-Clover-dualboot <br>
-   
+   rm -rf ~/ChimeraOS-Clover-dualboot <br>
+
    Then perform the clone again - <br>
-   git clone https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot <br>
-   
+   git clone https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot <br>
+
 3. Execute the script! <br>
-   cd ~/SteamDeck-Clover-dualboot <br>
+   cd ~/ChimeraOS-Clover-dualboot <br>
    chmod +x install-Clover.sh <br>
    ./install-Clover.sh <br>
-   
+
    ![image](https://user-images.githubusercontent.com/98122529/211831914-b170e57c-1d45-426c-9861-c0659c0531f6.png) <br>
 
 4. The script will check if sudo passwword is already set. <br>
@@ -303,12 +313,12 @@ VERY IMPORTANT - If you plan to use Windows installed on the sdcard, make sure t
    <b>c.</b>
          Script will show a menu. Select which OS will be the default selected in the Clover GUI boot menu. <br>
          ![image](https://user-images.githubusercontent.com/98122529/229242673-0966ef48-9b6b-41ba-8269-2e8c1d9caca1.png)<br>
-         
+
    <b>d.</b>
          Script will continue to run and perform sanity checks all throughout the install process.<br>
          ![image](https://user-images.githubusercontent.com/98122529/215194418-20597cef-4851-440d-b1c5-9428662349ad.png)<br>
 
-            
+
 5. Reboot the Steam Deck. Clover is installed and you should see a GUI to select which OS to boot from! Use the DPAD and press A to confirm your choice. You can also use the trackpad to control the mouse pointer and use the RIGHT SHOULDER BUTTON for LEFT-CLICK.<br>
 ![image](https://user-images.githubusercontent.com/98122529/214861561-bb63c209-14ee-492a-a506-2a87665f52d3.png)<br>
 </details>
@@ -343,7 +353,7 @@ Sample icons are saved in custom\iconset folder. Thanks to WindowsOnDeck reddit 
 4. Enter the sudo password when prompted.<br>
 
    ![image](https://user-images.githubusercontent.com/98122529/214928042-eda04c7e-41d0-4d0f-9ae8-6aa3003b5032.png)<br>
-   
+
 
 5. A new folder will appear for the esp partition.<br>
    Take note of the free space located in the lower right side. On this example the free space is around 26MB.<br>
@@ -411,10 +421,10 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 2. Open command prompt with admin privileges and enter the command -<br>
    bcdedit.exe -set {globalsettings} highestmode on<br>
 </details>
-      
+
 <details>
 <summary><b>Q2. Windows boots up in garbled graphics!</b></summary>
-   
+
 ![image](https://user-images.githubusercontent.com/98122529/211198222-5cce38ff-3f20-4386-8715-c408fea6a4b0.png)<br>
 
 1. Boot to SteamOS.<br>
@@ -422,12 +432,12 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Service and press OK. <br>
 
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
-   
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
+
 5. Press the item called Disable and press OK. <br>
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
 
 6. Reboot and it will automatically boot to Windows. <br>
 
@@ -438,11 +448,11 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 9. If everything looks good then shutdown the Steam Deck.<br>
 10. Press VOLDOWN + POWER and select SteamOS from the list.<br>
 11. Follow step2 onwards, and on step 5 select the item called Enable. <br>
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
-   
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
+
 12. Reboot and it will go back to Clover!
 </details>
 
@@ -453,12 +463,12 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Service and press OK. <br>
 
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
-   
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/f7299f1a-989b-4f0b-864f-3a527162a6b5)
+
 5. Press the item called Disable and press OK. <br>
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/0be15a60-6513-4608-8642-412dd0a7646e)
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/decb3a9d-7499-4df1-b7a4-abd3e23fa892)
 
 6. Reboot and it will automatically boot to Windows. <br>
 7. Install the GPU / APU driver upgrade and reboot Windows.<br>
@@ -466,14 +476,14 @@ Read this for your Common Questions and Answers! This will be regularly updated 
 9. If everything looks good then shutdown the Steam Deck.<br>
 10. Press VOLDOWN + POWER and select SteamOS from the list.<br>
 11. Follow step2 onwards, and on step 5 select the item called Enable. <br>
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
-   
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/2fd5b3ef-5247-49da-886c-2095e3ce44f3)
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/d9c5ecd2-0426-40fd-8fb0-88f38ba54b55)
+
 12. Reboot and it will go back to Clover!
 </details>
-       
+
 <details>
 <summary><b>Q4. I reinstalled Windows and now it boots directly to Windows instead of Clover!</b></summary>
 1. Shutdown the Steam Deck. While powered OFF, press VOLDOWN + POWER and select SteamOS from the list.<br>
@@ -517,8 +527,8 @@ This can happen if you have an old version of SteamOS installed or have installe
 2. Go to Desktop Mode.<br>
 3. Double-click Clover Toolbox desktop icon. <br>
 4. Select the item called Uninstall and press OK. <br>
-   
-![image](https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/assets/98122529/dced41a9-74e3-4dca-a90d-38e0e373614a)
+
+![image](https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/assets/98122529/dced41a9-74e3-4dca-a90d-38e0e373614a)
 
 4. Clover will be uninstalled and on next reboot it will automatically load Windows. Clover has been uninstalled!<br>
 </details>
@@ -535,7 +545,7 @@ Monetary donations are also encouraged if you find this project helpful. Your do
 Scan the QR code or click the image below to visit my donation page.
 
 <p align="center">
-<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot/blob/main/QRCode.png"/> </a>
+<a href="https://www.paypal.com/donate/?business=VSMP49KYGADT4&no_recurring=0&item_name=Your+donation+inspires+me+to+continue+research+on+the+Steam+Deck%21%0AClover+script%2C+70Hz+mod%2C+SteamOS+microSD%2C+Secure+Boot%2C+etc.%0A%0A&currency_code=CAD"> <img src="https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot/blob/main/QRCode.png"/> </a>
 </p>
 </details>
 

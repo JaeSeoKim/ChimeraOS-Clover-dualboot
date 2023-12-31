@@ -6,8 +6,8 @@ CLOVER_VERSION='5156'
 
 clear
 
-echo Clover Install Script by ryanrudolf
-echo https://github.com/ryanrudolfoba/SteamDeck-Clover-dualboot
+echo Clover Install Script by JaeSeoKim(feat. ryanrudolf)
+echo https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot.git
 sleep 2
 
 # initial support so that script will work with regular Linux distros outside of SteamOS
@@ -53,11 +53,11 @@ else
 		sudo efibootmgr -b $rEFInd -B &> /dev/null
 	done
 	sudo systemctl disable bootnext-refind.service &> /dev/null
-	sudo rm -rf /esp/efi/refind &> /dev/null
+	sudo rm -rf /boot/efi/refind &> /dev/null
 	sudo rm /etc/systemd/system/bootnext-refind.service &> /dev/null
 	rm -rf ~/.SteamDeck_rEFInd &> /dev/null
 
-	# check again if rEFInd is gone?	
+	# check again if rEFInd is gone?
 	efibootmgr | grep -i refind
 	if [ $? -ne 0 ]
 	then
@@ -69,7 +69,7 @@ else
 fi
 
 ###### Main menu. Ask user for the default OS to be selected in the Clover GUI boot menu.
-Choice=$(zenity --width 800 --height 250 --list --radiolist --multiple --title "Clover Install Script for Steam Deck - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\
+Choice=$(zenity --width 800 --height 250 --list --radiolist --multiple --title "Clover Install Script for ChimeraOS - https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot.git"\
 	--column "Select One" \
 	--column "Option" \
 	--column="Description - Read this carefully!"\
@@ -85,14 +85,14 @@ then
 elif [ "$Choice" == "Windows" ]
 then
 	echo $Choice
-	# change the Default Loader in config,plist 
+	# change the Default Loader in config,plist
 	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\MICROSOFT\\bootmgfw\.efi<\/string>' custom/config.plist
 
 elif [ "$Choice" == "SteamOS" ]
 then
 	echo $Choice
-	# change the Default Loader in config,plist 
-	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\STEAMOS\\STEAMCL\.efi<\/string>' custom/config.plist
+	# change the Default Loader in config,plist
+	sed -i '/<key>DefaultLoader<\/key>/!b;n;c\\t\t<string>\\EFI\\systemd\\systemd-bootx64\.efi<\/string>' custom/config.plist
 fi
 
 # sanity check - is 7z available
@@ -123,7 +123,7 @@ else
 fi
 
 # copy Clover files to EFI system partition
-sudo mkdir -p /esp/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /esp/efi/ && sudo cp custom/config.plist /esp/efi/clover/config.plist && sudo cp -Rf custom/themes/* /esp/efi/clover/themes
+sudo mkdir -p /boot/efi/clover && sudo cp -Rf ~/temp-clover/efi/clover /boot/efi/ && sudo cp custom/config.plist /boot/efi/clover/config.plist && sudo cp -Rf custom/themes/* /boot/efi/clover/themes
 
 if [ $? -eq 0 ]
 then
@@ -149,10 +149,10 @@ done
 sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Clover - GUI Boot Manager" -l "\EFI\clover\cloverx64.efi" &> /dev/null
 
 #Backup and disable the Windows EFI entry!
-sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig \
-	&& sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft \
-	&& sudo mv /esp/efi/boot/bootx64.efi /esp/efi/boot/bootx64.efi.orig \
-	&& sudo cp /esp/efi/clover/cloverx64.efi /esp/efi/boot/bootx64.efi
+sudo cp /boot/efi/Microsoft/Boot/bootmgfw.efi /boot/efi/Microsoft/Boot/bootmgfw.efi.orig \
+	&& sudo mv /boot/efi/Microsoft/Boot/bootmgfw.efi /boot/efi/Microsoft \
+	&& sudo mv /boot/efi/boot/bootx64.efi /boot/efi/boot/bootx64.efi.orig \
+	&& sudo cp /boot/efi/clover/cloverx64.efi /boot/efi/boot/bootx64.efi
 
 # re-arrange the boot order and make Clover the priority!
 Clover=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
@@ -183,13 +183,13 @@ cp custom/open_as_root.desktop ~/.local/share/kservices5/ServiceMenus
 mkdir ~/1Clover-tools &> /dev/null
 rm -f ~/1Clover-tools/* &> /dev/null
 cp -R custom/logos ~/1Clover-tools &> /dev/null
-sudo cp ~/1Clover-tools/logos/SteamDeckLogo.png /esp/efi/steamos/steamos.png &> /dev/null
+sudo cp ~/1Clover-tools/logos/SteamDeckLogo.png /boot/efi/systemd/steamos.png &> /dev/null
 
 # clover-bootmanager.sh - script that gets called by clover-bootmanager.service on startup
 cat > ~/1Clover-tools/clover-bootmanager.sh << EOF
 #!/bin/bash
 
-CloverStatus=/home/deck/1Clover-tools/status.txt
+CloverStatus=/home/gamer/1Clover-tools/status.txt
 
 echo Clover Boot Manager - \$(date) > \$CloverStatus
 echo BIOS Version : \$(sudo dmidecode -s bios-version) >> \$CloverStatus
@@ -223,11 +223,11 @@ then
 	echo SteamOS EFI entry exists! No need to re-add SteamOS. >> \$CloverStatus
 else
 	echo SteamOS EFI entry is not found. Need to re-add SteamOS. >> \$CloverStatus
-	efibootmgr -c -d /dev/nvme0n1 -p 1 -L "SteamOS" -l "\EFI\steamos\steamcl.efi" &> /dev/null
+	efibootmgr -c -d /dev/nvme0n1 -p 1 -L "SteamOS" -l "\EFI\systemd\systemd-bootx64.efi" &> /dev/null
 fi
 
 # disable the Windows EFI entry!
-test -f /esp/efi/Microsoft/Boot/bootmgfw.efi && echo Windows EFI exists! Moving it to /esp/efi/Microsoft >> \$CloverStatus && sudo cp /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft/Boot/bootmgfw.efi.orig && sudo mv /esp/efi/Microsoft/Boot/bootmgfw.efi /esp/efi/Microsoft &>> \$CloverStatus
+test -f /boot/efi/Microsoft/Boot/bootmgfw.efi && echo Windows EFI exists! Moving it to /boot/efi/Microsoft >> \$CloverStatus && sudo cp /boot/efi/Microsoft/Boot/bootmgfw.efi /boot/efi/Microsoft/Boot/bootmgfw.efi.orig && sudo mv /boot/efi/Microsoft/Boot/bootmgfw.efi /boot/efi/Microsoft &>> \$CloverStatus
 
 # re-arrange the boot order and make Clover the priority!
 Clover=\$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
@@ -272,7 +272,7 @@ fi
 while true
 do
 Choice=\$(zenity --width 750 --height 400 --list --radiolist --multiple \
-	--title "Clover Toolbox for Clover script  - https://github.com/ryanrudolfoba/SteamDeck-clover-dualboot"\\
+	--title "Clover Install Script for ChimeraOS - https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot.git"\\
 	--column "Select One" \\
 	--column "Option" \\
 	--column="Description - Read this carefully!"\\
@@ -299,13 +299,13 @@ then
 elif [ "\$Choice" == "Themes" ]
 then
 Theme_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 300 --list \\
-	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls /esp/efi/clover/themes) )
+	--column "Theme Name" \$(echo \$PASSWORD | sudo -S ls /boot/efi/clover/themes) )
 
 	if [ \$? -eq 1 ]
 	then
 		echo User pressed CANCEL. Going back to main menu.
 	else
-		echo \$PASSWORD | sudo -S sed -i '/<key>Theme<\\/key>/!b;n;c\\\t\\t<string>'\$Theme_Choice'<\\/string>' /esp/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>Theme<\\/key>/!b;n;c\\\t\\t<string>'\$Theme_Choice'<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Theme has been changed to \$Theme_Choice!" --width 400 --height 75
 	fi
 
@@ -323,8 +323,8 @@ Timeout_Choice=\$(zenity --width 500 --height 275 --list --radiolist --multiple 
 	then
 		echo User pressed CANCEL. Going back to main menu.
 	else
-		# change the Default Timeout in config,plist 
-		echo \$PASSWORD | sudo -S sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>'\$Timeout_Choice'<\\/integer>' /esp/efi/clover/config.plist
+		# change the Default Timeout in config,plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>Timeout<\\/key>/!b;n;c\\\t\\t<integer>'\$Timeout_Choice'<\\/integer>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Default timeout is now set to \$Timeout_Choice !" --width 400 --height 75
 	fi
 
@@ -343,7 +343,7 @@ Service_Choice=\$(zenity --width 650 --height 250 --list --radiolist --multiple 
 	elif [ "\$Service_Choice" == "Disable" ]
 	then
 		# restore Windows EFI entry from backup
-		echo \$PASSWORD | sudo -S cp /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
+		echo \$PASSWORD | sudo -S cp /boot/efi/Microsoft/Boot/bootmgfw.efi.orig /boot/efi/Microsoft/Boot/bootmgfw.efi
 
 		# make Windows the next boot option!
 		Windows=\$(efibootmgr | grep -i Windows | colrm 9 | colrm 1 4)
@@ -376,42 +376,42 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 
 	elif [ "\$Boot_Choice" == "Windows" ]
 	then
-		# change the Default Loader to Windows in config,plist 
+		# change the Default Loader to Windows in config,plist
 
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /esp/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>boot<\\/string>' /boot/efi/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
 
 	elif [ "\$Boot_Choice" == "SteamOS" ]
 	then
-		# change the Default Loader in config,plist 
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\STEAMOS\\\STEAMCL\\.efi<\\/string>' /esp/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /esp/efi/clover/config.plist
+		# change the Default Loader in config,plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\systemd\\\systemd-bootx64\\.efi<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>boot<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
 
 	elif [ "\$Boot_Choice" == "LastOS" ]
 	then
-		# change the Default Volume in config,plist 
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>LastBootedVolume<\\/string>' /esp/efi/clover/config.plist
+		# change the Default Volume in config,plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>LastBootedVolume<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "The last OS used is now the default boot entry in Clover!" --width 425 --height 75
 	fi
 
 elif [ "\$Choice" == "NewLogo" ]
 then
 Logo_Choice=\$(zenity --title "Clover Toolbox"	--width 200 --height 350 --list \\
-	--column "Logo  Name" \$(ls -l ~/1Clover-tools/logos/*.png | sed s/^.*\\\/\\//) )  
+	--column "Logo  Name" \$(ls -l ~/1Clover-tools/logos/*.png | sed s/^.*\\\/\\//) )
 	if [ \$? -eq 1 ]
 	then
 		echo User pressed CANCEL. Going back to main menu.
 	else
-		echo \$PASSWORD | sudo -S cp ~/1Clover-tools/logos/\$Logo_Choice /esp/efi/steamos/steamos.png
+		echo \$PASSWORD | sudo -S cp ~/1Clover-tools/logos/\$Logo_Choice /boot/efi/systemd/steamos.png
 		zenity --warning --title "Clover Toolbox" --text "BGRT logo has been changed to \$Logo_Choice!" --width 400 --height 75
 	fi
 
 elif [ "\$Choice" == "OldLogo" ]
 then
-	echo \$PASSWORD | sudo -S rm /esp/efi/steamos/steamos.png &> /dev/null
+	echo \$PASSWORD | sudo -S rm /boot/efi/systemd/steamos.png &> /dev/null
 	zenity --warning --title "Clover Toolbox" --text "BGRT logo has been restored to the default!" --width 400 --height 75
 
 elif [ "\$Choice" == "Resolution" ]
@@ -428,26 +428,26 @@ Resolution_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multip
 
 	elif [ "\$Resolution_Choice" == "800p" ]
 	then
-		# change the sceen resolution to 1280x800 in config,plist 
-		echo \$PASSWORD | sudo -S sed -i '/<key>ScreenResolution<\\/key>/!b;n;c\\\t\\t<string>1280x800<\\/string>' /esp/efi/clover/config.plist
+		# change the sceen resolution to 1280x800 in config,plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>ScreenResolution<\\/key>/!b;n;c\\\t\\t<string>1280x800<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1280x800." --width 400 --height 75
 
 	elif [ "\$Resolution_Choice" == "1200p" ]
 	then
-		# change the sceen resolution to 1920x1200 in config,plist 
-		echo \$PASSWORD | sudo -S sed -i '/<key>ScreenResolution<\\/key>/!b;n;c\\\t\\t<string>1920x1200<\\/string>' /esp/efi/clover/config.plist
+		# change the sceen resolution to 1920x1200 in config,plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>ScreenResolution<\\/key>/!b;n;c\\\t\\t<string>1920x1200<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "Screen resolution is now set to 1920x1200." --width 400 --height 75
 	fi
 
 elif [ "\$Choice" == "Uninstall" ]
 then
 	# restore Windows EFI entry from backup
-	echo \$PASSWORD | sudo -S mv /esp/efi/Microsoft/Boot/bootmgfw.efi.orig /esp/efi/Microsoft/Boot/bootmgfw.efi
-	echo \$PASSWORD | sudo -S mv /esp/efi/boot/bootx64.efi.orig /esp/efi/boot/bootx64.efi
-	echo \$PASSWORD | sudo -S rm /esp/efi/Microsoft/bootmgfw.efi
+	echo \$PASSWORD | sudo -S mv /boot/efi/Microsoft/Boot/bootmgfw.efi.orig /boot/efi/Microsoft/Boot/bootmgfw.efi
+	echo \$PASSWORD | sudo -S mv /boot/efi/boot/bootx64.efi.orig /boot/efi/boot/bootx64.efi
+	echo \$PASSWORD | sudo -S rm /boot/efi/Microsoft/bootmgfw.efi
 
 	# remove Clover from the EFI system partition
-	echo \$PASSWORD | sudo -S rm -rf /esp/efi/clover
+	echo \$PASSWORD | sudo -S rm -rf /boot/efi/clover
 
 	for entry in \$(efibootmgr | grep "Clover - GUI" | colrm 9 | colrm 1 4)
 	do
@@ -455,14 +455,12 @@ then
 	done
 
 	# remove custom logo / BGRT
-	echo \$PASSWORD | sudo -S rm /esp/efi/steamos/steamos.png &> /dev/null
+	echo \$PASSWORD | sudo -S rm /boot/efi/systemd/steamos.png &> /dev/null
 
 	# delete systemd service
-	echo \$PASSWORD | sudo -S steamos-readonly disable
+	echo \$PASSWORD | sudo -S frzr-unlock
 	echo \$PASSWORD | sudo -S systemctl stop clover-bootmanager.service
 	echo \$PASSWORD | sudo -S rm /etc/systemd/system/clover-bootmanager*
-	echo \$PASSWORD | sudo -S sudo systemctl daemon-reload
-	echo \$PASSWORD | sudo -S steamos-readonly enable
 
 	# delete dolphin root extension
 	rm ~/.local/share/kservices5/ServiceMenus/open_as_root.desktop
@@ -470,11 +468,25 @@ then
 	rm -rf ~/SteamDeck-Clover-dualboot
 	rm -rf ~/1Clover-tools/*
 	rm ~/Desktop/Clover-Toolbox
-	
+
 	zenity --warning --title "Clover Toolbox" --text "Clover has been uninstalled and the Windows EFI entry has been activated!" --width 600 --height 75
 	exit
 fi
 done
+EOF
+
+########################################
+###### Clover Toolbox Shourtcut    #####
+########################################
+cat > ~/.local/share/applications << EOF
+#!/usr/bin/env xdg-open
+	[Desktop Entry]
+	Name=Clover-Toolbox
+	Exec=/home/gamer/1Clover-tools/Clover-Toolbox.sh
+	Terminal=false
+	Type=Application
+	Categories=Util;
+	StartupNotify=false
 EOF
 
 ######################################

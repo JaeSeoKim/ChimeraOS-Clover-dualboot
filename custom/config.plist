@@ -13,7 +13,7 @@
 		<key>DefaultLoader</key>
 		<string>\EFI\MICROSOFT\bootmgfw.efi</string>
 		<key>DefaultVolume</key>
-		<string>esp</string>
+		<string>boot</string>
 		<key>DisableCloverHotkeys</key>
 		<false/>
 		<key>Fast</key>
@@ -53,7 +53,7 @@
 					<key>Image</key>
 					<string>os_steamos</string>
 					<key>Path</key>
-					<string>\EFI\STEAMOS\STEAMCL.efi</string>
+					<string>\EFI\systemd\systemd-bootx64.efi</string>
 					<key>Title</key>
 					<string>SteamOS</string>
 					<key>Type</key>
@@ -67,7 +67,7 @@
 					<key>Image</key>
 					<string>os_steamos</string>
 					<key>Path</key>
-					<string>\EFI\STEAMOS\STEAMCL.efi</string>
+					<string>\EFI\systemd\systemd-bootx64.efi</string>
 					<key>Title</key>
 					<string>SteamOS</string>
 					<key>Type</key>
@@ -219,18 +219,6 @@
 					<key>FullTitle</key>
 					<string>Manjaro Linux</string>
 				</dict>
-				<dict>
-					<key>Image</key>
-					<string>os_ubuntu</string>
-					<key>Path</key>
-					<string>\EFI\systemd\systemd-bootx64.efi</string>
-					<key>Title</key>
-					<string>Pop!_ OS</string>
-					<key>Type</key>
-					<string>Linux</string>
-					<key>FullTitle</key>
-					<string>Pop!_OS by System76</string>
-				</dict>
 			</array>
 		</dict>
 		<key>CustomIcons</key>
@@ -255,7 +243,7 @@
 		<key>Scan</key>
 		<false/>
 		<key>ScreenResolution</key>
-		<string>1280x800</string>
+		<string>1920x1200</string>
 		<key>Timezone</key>
 		<integer>3</integer>
 		<key>Theme</key>
