@@ -478,7 +478,7 @@ EOF
 ########################################
 ###### Clover Toolbox Shourtcut    #####
 ########################################
-cat > ~/.local/share/applications << EOF
+cat > ~/.local/share/applications/Clover-Toolbox.desktop << EOF
 #!/usr/bin/env xdg-open
 	[Desktop Entry]
 	Name=Clover-Toolbox
