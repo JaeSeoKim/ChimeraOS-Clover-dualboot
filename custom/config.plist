@@ -11,9 +11,9 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultLoader</key>
-		<string>\EFI\MICROSOFT\bootmgfw.efi</string>
+		<string>\EFI\systemd\systemd-bootx64.efi</string>
 		<key>DefaultVolume</key>
-		<string>boot</string>
+		<string>esp</string>
 		<key>DisableCloverHotkeys</key>
 		<false/>
 		<key>Fast</key>
@@ -37,7 +37,7 @@
 		<key>StrictHibernate</key>
 		<false/>
 		<key>Timeout</key>
-		<integer>15</integer>
+		<integer>5</integer>
 		<key>XMPDetection?</key>
 		<string>-1</string>
 	</dict>

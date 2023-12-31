@@ -379,7 +379,7 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 		# change the Default Loader to Windows in config,plist
 
 		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /boot/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>boot<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /boot/efi/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
 
@@ -387,7 +387,7 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 	then
 		# change the Default Loader in config,plist
 		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\systemd\\\systemd-bootx64\\.efi<\\/string>' /boot/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>boot<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
 
 	elif [ "\$Boot_Choice" == "LastOS" ]
