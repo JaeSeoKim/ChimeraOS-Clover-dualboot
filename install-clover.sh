@@ -281,8 +281,8 @@ Choice=\$(zenity --width 750 --height 400 --list --radiolist --multiple \
 	FALSE Timeout "Set the default timeout to 1 5 10 or 15secs before it boots the default OS."\\
 	FALSE Service "Disable / Enable the Clover EFI entry and Clover systemd service."\\
 	FALSE Boot "Set the OS that will be booted by default."\\
-	FALSE NewLogo "Replace the BGRT startup logo."\\
-	False OldLogo "Restore the BGRT startup logo to the default."\\
+	# FALSE NewLogo "Replace the BGRT startup logo."\\
+	# False OldLogo "Restore the BGRT startup logo to the default."\\
 	FALSE Resolution "Set the screen resolution if using the DeckHD 1200p screen mod."\\
 	FALSE Uninstall "Choose this to uninstall Clover and revert any changes made."\\
 	TRUE EXIT "***** Exit the Clover Toolbox *****")
@@ -379,7 +379,7 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 		# change the Default Loader to Windows in config,plist
 
 		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\MICROSOFT\\\bootmgfw\\.efi<\\/string>' /boot/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>EFI<\\/string>' /boot/efi/clover/config.plist
 
 		zenity --warning --title "Clover Toolbox" --text "Windows is now the default boot entry in Clover!" --width 400 --height 75
 
@@ -387,7 +387,7 @@ Boot_Choice=\$(zenity --width 550 --height 250 --list --radiolist --multiple --t
 	then
 		# change the Default Loader in config,plist
 		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultLoader<\\/key>/!b;n;c\\\t\\t<string>\\\EFI\\\systemd\\\systemd-bootx64\\.efi<\\/string>' /boot/efi/clover/config.plist
-		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>esp<\\/string>' /boot/efi/clover/config.plist
+		echo \$PASSWORD | sudo -S sed -i '/<key>DefaultVolume<\\/key>/!b;n;c\\\t\\t<string>EFI<\\/string>' /boot/efi/clover/config.plist
 		zenity --warning --title "Clover Toolbox" --text "SteamOS is now the default boot entry in Clover!" --width 400 --height 75
 
 	elif [ "\$Boot_Choice" == "LastOS" ]
