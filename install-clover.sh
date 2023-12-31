@@ -238,7 +238,7 @@ echo "*** Current state of EFI entries ****" >> \$CloverStatus
 efibootmgr | grep -iv 'Boot2\\|PXE' >> \$CloverStatus
 echo "*** Current state of EFI partition ****" >> \$CloverStatus
 df -h | grep -i 'Filesystem\\|esp' >> \$CloverStatus
-chown deck:deck \$CloverStatus
+chown gamer:gamer \$CloverStatus
 EOF
 
 # clover-bootmanager.service - systemd service that calls clover-bootmanager.sh on startup
