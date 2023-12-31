@@ -6,7 +6,7 @@ CLOVER_VERSION='5156'
 
 clear
 
-echo Clover Install Script by JaeSeoKim(feat. ryanrudolf)
+echo "Clover Install Script by JaeSeoKim(feat. ryanrudolf)"
 echo https://github.com/JaeSeoKim/ChimeraOS-Clover-dualboot.git
 sleep 2
 
